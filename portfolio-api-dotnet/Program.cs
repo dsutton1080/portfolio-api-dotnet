@@ -1,3 +1,6 @@
+using Project.Services;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -5,6 +8,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Add db and EF services
+builder.Services.AddDbContext<MyDbContext>(options => options.UseInMemoryDatabase("MyDatabase"));
+builder.Services.AddScoped<EFService>();
 
 var app = builder.Build();
 
