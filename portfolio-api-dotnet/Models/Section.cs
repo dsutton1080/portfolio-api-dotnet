@@ -9,4 +9,10 @@ namespace portfolio_api_dotnet.Models
         public string? SubHeader { get; set; }
         public ICollection<Contents>? Contents { get; set; }
     }
+
+    public class Contents
+    {
+        public required string Content { get; set; }
+        public int? Order { get; set; }
+    }
 }

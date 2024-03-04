@@ -1,0 +1,11 @@
+# # Include .cs files
+# !*.cs
+
+# # Include .csproj files
+# !*.csproj
+
+# #Include the files in the Services folder
+# !Services/*
+
+# # Ignore all files
+# *
