@@ -67,12 +67,13 @@ namespace Project.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, User user)
         {
-            if (id != user.Id)
+            var userFromDb = _service.QueryEntities<User>(u => u.Id == id).FirstOrDefault();
+            if (userFromDb == null)
             {
-                return BadRequest();
+                return NotFound();
             }
-
-            _service.UpdateEntity(user);
+            userFromDb.IsAdmin = user.IsAdmin;
+            _service.UpdateEntity(userFromDb);
             return NoContent();
         }
 

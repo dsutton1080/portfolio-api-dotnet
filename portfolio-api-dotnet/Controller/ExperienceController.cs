@@ -42,12 +42,17 @@ namespace Project.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, Experience experience)
         {
-            if (id != experience.Id)
-            {
-                return BadRequest();
-            }
+            var experienceRecord = _service.QueryEntities<Experience>(e => e.Id == id).FirstOrDefault();
 
-            _service.UpdateEntity(experience);
+            if (experienceRecord == null)
+            {
+                return NotFound();
+            }
+            experienceRecord.Title = experience.Title;
+            experienceRecord.Content = experience.Content;
+            experienceRecord.Date = experience.Date;
+
+            _service.UpdateEntity(experienceRecord);
             return NoContent();
         }
 

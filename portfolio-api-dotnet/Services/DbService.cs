@@ -72,7 +72,95 @@ namespace Project.Services
                 _context.Experiences.AddRange(experience1, experience2);
                 _context.SaveChanges();
             }
-
+            if (_context.Projects.Any())
+            {
+                var project1 = new ProjectClass
+                {
+                    Name = "Project 1",
+                    Description = "Description 1",
+                    Link = "Link 1",
+                    Label = "Label 1",
+                    Order = 1,
+                    Logo = "Logo 1"
+                };
+                var project2 = new ProjectClass
+                {
+                    Name = "Project 2",
+                    Description = "Description 2",
+                    Link = "Link 2",
+                    Label = "Label 2",
+                    Order = 2,
+                    Logo = "Logo 2"
+                };
+                _context.Projects.AddRange(project1, project2);
+                _context.SaveChanges();
+            }
+            if (!_context.Users.Any())
+            {
+                var user1 = new User
+                {
+                    Email = "user1@gmail.com",
+                    FirstName = "User",
+                    IsAdmin = false,
+                    LastName = "One",
+                    Password = "password"
+                };
+                var user2 = new User
+                {
+                    Email = "user2@gmail.com",
+                    FirstName = "User",
+                    IsAdmin = false,
+                    LastName = "Two",
+                    Password = "password"
+                };
+                _context.Users.AddRange(user1, user2);
+                _context.SaveChanges();
+            }
+            if (!_context.Sections.Any())
+            {
+                var section1 = new Section
+                {
+                    Order = 1,
+                    Title = "Section 1",
+                    Header = "Header 1",
+                    SubHeader = "SubHeader 1",
+                    Contents = new List<ContentClass>
+                    {
+                        new ContentClass
+                        {
+                            Content = "Content 1",
+                            Order = 1
+                        },
+                        new ContentClass
+                        {
+                            Content = "Content 2",
+                            Order = 2
+                        }
+                    }
+                };
+                var section2 = new Section
+                {
+                    Order = 2,
+                    Title = "Section 2",
+                    Header = "Header 2",
+                    SubHeader = "SubHeader 2",
+                    Contents = new List<ContentClass>
+                    {
+                        new ContentClass
+                        {
+                            Content = "Content 1",
+                            Order = 1
+                        },
+                        new ContentClass
+                        {
+                            Content = "Content 2",
+                            Order = 2
+                        }
+                    }
+                };
+                _context.Sections.AddRange(section1, section2);
+                _context.SaveChanges();
+            }
         }
     }
 }
