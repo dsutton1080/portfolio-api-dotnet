@@ -15,5 +15,6 @@ namespace portfolio_api_dotnet.Models
         public int Id { get; set; }
         public required string Content { get; set; }
         public int? Order { get; set; }
+        public int SectionId { get; set; }
     }
 }

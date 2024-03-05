@@ -26,4 +26,6 @@ if (app.Environment.IsDevelopment())
 
 app.MapControllers();
 
+app.MapGet("/health", () => "Service is running");
+
 app.Run();

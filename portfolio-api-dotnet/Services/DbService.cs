@@ -72,7 +72,7 @@ namespace Project.Services
                 _context.Experiences.AddRange(experience1, experience2);
                 _context.SaveChanges();
             }
-            if (_context.Projects.Any())
+            if (!_context.Projects.Any())
             {
                 var project1 = new ProjectClass
                 {
@@ -129,12 +129,14 @@ namespace Project.Services
                         new ContentClass
                         {
                             Content = "Content 1",
-                            Order = 1
+                            Order = 1,
+                            SectionId = 1
                         },
                         new ContentClass
                         {
                             Content = "Content 2",
-                            Order = 2
+                            Order = 2,
+                            SectionId = 1
                         }
                     }
                 };
@@ -149,12 +151,14 @@ namespace Project.Services
                         new ContentClass
                         {
                             Content = "Content 1",
-                            Order = 1
+                            Order = 1,
+                            SectionId = 2
                         },
                         new ContentClass
                         {
                             Content = "Content 2",
-                            Order = 2
+                            Order = 2,
+                            SectionId = 2
                         }
                     }
                 };

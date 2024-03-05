@@ -32,6 +32,12 @@ namespace Project.Controllers
             return section;
         }
 
+        [HttpGet("count")]
+        public ActionResult<int> Count()
+        {
+            return _service.QueryEntities<Section>(s => true).Count;
+        }
+
         [HttpPost]
         public ActionResult<Section> Post(Section section)
         {

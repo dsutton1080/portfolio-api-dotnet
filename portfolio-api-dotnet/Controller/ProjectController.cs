@@ -42,12 +42,20 @@ namespace Project.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, ProjectClass project)
         {
-            if (id != project.Id)
-            {
-                return BadRequest();
-            }
+            var projectFromDb = _service.QueryEntities<ProjectClass>(p => p.Id == id).FirstOrDefault();
 
-            _service.UpdateEntity(project);
+            if (projectFromDb == null)
+            {
+                return NotFound();
+            }
+            projectFromDb.Name = project.Name;
+            projectFromDb.Description = project.Description;
+            projectFromDb.Link = project.Link;
+            projectFromDb.Label = project.Label;
+            projectFromDb.Order = project.Order;
+            projectFromDb.Logo = project.Logo;
+
+            _service.UpdateEntity(projectFromDb);
             return NoContent();
         }
 
