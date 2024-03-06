@@ -17,7 +17,13 @@ namespace Project.Controllers
         [HttpGet]
         public ActionResult<List<Section>> Get()
         {
-            return _service.QueryEntities<Section>(s => true);
+            var servicesFromDb = _service.QueryEntities<Section>(s => true);
+            foreach (var section in servicesFromDb)
+            {
+                var contentsFromDb = _service.QueryEntities<ContentClass>(c => c.SectionId == section.Id);
+                section.Contents = contentsFromDb;
+            }
+            return servicesFromDb;
         }
 
         [HttpGet("{id}")]
@@ -29,6 +35,8 @@ namespace Project.Controllers
             {
                 return NotFound();
             }
+            var contentsFromDb = _service.QueryEntities<ContentClass>(c => c.SectionId == section.Id);
+            section.Contents = contentsFromDb;
             return section;
         }
 

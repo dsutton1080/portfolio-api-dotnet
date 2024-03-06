@@ -22,7 +22,6 @@ namespace Project.Services
         public EFService(MyDbContext context)
         {
             _context = context;
-            SeedDatabase();
         }
 
         // Example method to add an entity
@@ -52,7 +51,7 @@ namespace Project.Services
             return _context.Set<T>().Where(predicate).ToList();
         }
 
-        private void SeedDatabase()
+        public void SeedDatabase()
         {
             // Check if database is already seeded
             if (!_context.Experiences.Any())
